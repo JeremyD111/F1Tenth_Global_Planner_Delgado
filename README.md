@@ -2,8 +2,7 @@
 
 El trabajo se basa en el repositorio original:
 
-**Global_Planner** 
-https://github.com/widegonz/Global_Planner
+**Global_Planner:** https://github.com/widegonz/Global_Planner
 
 A partir de este repositorio base, se realizaron adaptaciones y modificaciones para:
 
@@ -14,7 +13,7 @@ A partir de este repositorio base, se realizaron adaptaciones y modificaciones p
 
 ## Descripción del algoritmo asignado: Dijkstra
 
-El algoritmo de **Dijkstra** es un método clásico de planificación de rutas que permite encontrar el **camino de costo mínimo** entre un nodo inicial y todos los demás nodos de un grafo ponderado, siempre que los costos de las aristas sean no negativos.
+El algoritmo de **Dijkstra** es un método clásico de planificación de rutas que permite encontrar el camino de costo mínimo entre un nodo inicial y todos los demás nodos de un grafo ponderado, siempre que los costos de las aristas sean no negativos.
 
 Dijkstra se utiliza para buscar la **ruta óptima** entre un punto inicial y un punto objetivo sobre una representación discreta del entorno, generalmente modelada como una grilla ocupacional. Cada celda del mapa corresponde a un nodo del grafo, y las transiciones entre celdas adyacentes representan las aristas del grafo.
 
@@ -34,7 +33,7 @@ El algoritmo de Dijkstra opera de la siguiente manera:
 3. En cada iteración, se expande el nodo con menor costo y se actualizan los costos de sus vecinos si se encuentra una ruta más corta.
 4. El proceso continúa hasta que el nodo objetivo es alcanzado o se hayan evaluado todos los nodos accesibles.
 
-Al finalizar, el algoritmo garantiza que la trayectoria obtenida corresponde al **camino de menor costo global** entre el inicio y el objetivo.
+Al finalizar, el algoritmo garantiza que la trayectoria obtenida corresponde al camino de menor costo global entre el inicio y el objetivo.
 
 ### Características principales
 - Garantiza optimalidad del camino encontrado.
@@ -88,11 +87,16 @@ El resultado corresponde al camino óptimo global calculado mediante Dijkstra so
 ### 5. Ejecución del algoritmo RRT
 
 ```bash
+cd ~/F1Tenth_Global_Planner_Delgado
 python3 planificador_rrt_delgado.py
 ```
 
+### 6. Visualizacion de archivos csv con waypoints de 0.5 y 1.0
+
+- Los archivos csv provenientes del algoritmo **Dijkstra** estaran en la carpeta `f1tenth` con los nobres de `dijkstra_0.5m.csv` y `dijkstra_1.0m.csv`
 
 
+- Los archivos csv provenientes del algoritmo **RRT** estaran en la carpeta raiz con los nobres de `rrt_path_0.5m.csv` y `rrt_path_1.0m.csv`
 
 
 
