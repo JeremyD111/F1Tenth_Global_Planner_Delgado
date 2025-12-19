@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from python_motion_planning.utils import Map, SearchFactory
 
-# --- FUNCIONES PROPORCIONADAS POR EL PROFESOR (SIN ALTERAR) ---
+# --- FUNCIONES ---
 
 def load_map(yaml_path, downsample_factor=1):
     yaml_path = Path(yaml_path)
@@ -58,7 +58,7 @@ def map_to_world(x_map, y_map, resolution, origin, image_height):
     y_world = y_map * resolution + origin[1]
     return (x_world, y_world)
 
-# --- ADAPTACIÓN ESPECÍFICA PARA RRT SEGÚN GLOBAL_EXAMPLES.PY ---
+# ------
 
 def rrt_env_from_map(map_bin):
     """
@@ -72,12 +72,10 @@ def rrt_env_from_map(map_bin):
     # Extraemos las coordenadas de los obstáculos.
     obs_y, obs_x = np.where(map_bin == 1)
     
-    # En el repo, obs_rect espera [x, y, width, height]
-    # Para cumplir con la estructura del profesor sin trucos raros,
-    # definimos cada pixel ocupado como un obstáculo básico.
+    
     obs_rect = [[x, h - 1 - y, 1, 1] for x, y in zip(obs_x, obs_y)]
     
-    # IMPORTANTE: Esta es la forma en que el repo actualiza un ambiente 'Map'
+    
     env.update(obs_rect=obs_rect)
     return env
 
@@ -116,11 +114,11 @@ if __name__ == "__main__":
     x_start, y_start = 31.5, -39.5 
     x_goal, y_goal = 28.1, -38.8
 
-    # 1. Cargar mapa (Función del profesor)
+    # 1. Cargar mapa 
     map_bin, resolution, origin = load_map(yaml_path, downsample_factor)
     img_h = map_bin.shape[0]
 
-    # 2. Crear entorno Map (Ayuda del profesor)
+    # 2. Crear entorno Map 
     env = rrt_env_from_map(map_bin)
 
     # 3. Coordenadas
