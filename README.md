@@ -99,6 +99,9 @@ python3 planificador_rrt_delgado.py
 - Los archivos csv provenientes del algoritmo **RRT** estaran en la carpeta raiz con los nobres de `rrt_path_0.5m.csv` y `rrt_path_1.0m.csv`
 
 
+### 7. Enlace de youtube:
+
+https://youtu.be/slBmgillWC4
 
 
 

@@ -133,9 +133,9 @@ if __name__ == "__main__":
     planner = SearchFactory()("rrt", start=start, goal=goal, env=env)
     
     # Parámetros recomendados para RRT en este mapa
-    planner.max_dist = 3.0 # Cuánto se estira cada rama
+    planner.max_dist = 3.8 # Cuánto se estira cada rama
     planner.sample_num = 6000 
-    planner.goal_sample_rate = 0.15
+    planner.goal_sample_rate = 0.045
 
     print("Ejecutando Animación RRT...")
     #planner.run()
