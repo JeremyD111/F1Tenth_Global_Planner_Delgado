@@ -99,7 +99,7 @@ def save_custom_csv(path, filename, resolution, origin, image_height):
         writer.writerow(["x", "y"])
         for x_map, y_map in path:
             x, y = map_to_world(x_map, y_map, resolution, origin, image_height)
-            writer.writerow([round(x,2),round(y,2)])
+            writer.writerow([(x),(y)])
 
 
 #--- BLOQUE PRINCIPAL ---

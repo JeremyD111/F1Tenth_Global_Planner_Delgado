@@ -1,4 +1,4 @@
-# Global Path Planning – RRT y Dijkstra aplicado a F1TENTH
+# Parte A: Global Path Planning – RRT y Dijkstra aplicado a F1TENTH
 
 El trabajo se basa en el repositorio original:
 
@@ -91,6 +91,9 @@ cd ~/F1Tenth_Global_Planner_Delgado
 python3 planificador_rrt_delgado.py
 ```
 
+**NOta:** La generacion de la trayectoria puede tardar un poco mas de 20 minutos.
+
+
 ### 6. Visualizacion de archivos csv con waypoints de 0.5 y 1.0
 
 - Los archivos csv provenientes del algoritmo **Dijkstra** estaran en la carpeta `f1tenth` con los nobres de `dijkstra_0.5m.csv` y `dijkstra_1.0m.csv`
@@ -104,14 +107,49 @@ python3 planificador_rrt_delgado.py
 https://youtu.be/slBmgillWC4
 
 
+# Parte B: Suavizado de trayectorias (Curve Generation)
+
+Una vez obtenida la trayectoria discreta a partir de los algoritmos de planificación global (Dijkstra y RRT), se aplica un proceso de suavizado de trayectoria (path smoothing) con el objetivo de generar rutas más continuas, suaves y físicamente realizables para un vehículo de **F1TENTH**.
 
 
+## Descripción del método de suavizado: B-Splines
+
+Para el suavizado de trayectorias se empleó B-Splines cúbicos, utilizando la infraestructura de generación de curvas incluida en el repositorio base `python_motion_planning.utils.CurveFactory`. Se utilizó `k=3` con un paso de discretización fino de `step = 0.001`.
+
+El algoritmo B-Spline implementado genera una curva paramétrica a partir de una secuencia de puntos mediante tres etapas principales: parametrización, construcción del vector de nudos y evaluación de funciones base. Primero, a cada punto se le asigna un parámetro escalar utilizando el método centrípeto, el cual depende de la distancia entre puntos consecutivos y ayuda a evitar oscilaciones en regiones con cambios bruscos. Luego, se construye un vector de nudos normalizado que define los intervalos donde actúan las funciones base. A partir de estos parámetros, se calculan las funciones base B-Spline usando la formulación recursiva de Cox–de Boor, que pondera localmente los puntos de control. Finalmente, la curva se evalúa como una combinación lineal de dichas funciones base con los puntos de control, produciendo una trayectoria continua donde cada segmento depende solo de un subconjunto de puntos vecinos, suavizando la ruta original sin alterar globalmente su forma.
 
 
+## Instrucciones de ejecución
+
+### Suavizar trayectoria generada por Dijkstra
+
+Desde la raíz del repositorio
+
+```bash
+cd ~/F1Tenth_Global_Planner_Delgado
+python3 suavizar_trayectorias.py
+```
+Veremos como se genera simultaneamente dos animaciones donde se suavizan las trayectorias con waypoints de 0.5m y 1.0m respectivamente 
+
+### Suavizar trayectoria generada por RRT
+
+```bash
+cd ~/F1Tenth_Global_Planner_Delgado
+python3 suavizar_trayectorias_rrt.py
+```
+NUevamente veremos como se generan dos animaciones donde se suavizan las trayectorias con waypoints de 0.5m y 1.0m respectivamente
+
+### Visualizacion de archivos csv con waypoints de 0.5 y 1.0
+
+- Los archivos csv de la curva suavizada del algoritmo **Dijkstra** estaran en la carpeta `f1tenth` con los nobres de `dijkstra_0.5m_smooth.csv` y `dijkstra_1.0m_smooth.csv`
 
 
+- Los archivos csv de la curva suavizada del algoritmo **RRT** estaran en la carpeta raiz con los nobres de `rrt_path_0.5m_smooth.csv` y `rrt_path_1.0m_smooth.csv`
 
 
+### Enlace de youtube:
+
+https://www.youtube.com/watch?v=cH7kaLIMNUA 
 
 
 
