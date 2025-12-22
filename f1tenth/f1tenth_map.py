@@ -103,7 +103,6 @@ def save_custom_csv(path, filename, resolution, origin, image_height):
 
 
 #--- BLOQUE PRINCIPAL ---
-
 if __name__ == "__main__":
     HERE = Path(__file__).resolve().parent
     yaml_path = HERE.parent / "Mapas-F1Tenth" / "BrandsHatch_map2.yaml"
